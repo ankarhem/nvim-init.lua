@@ -9,6 +9,17 @@ lsp.ensure_installed({
   'rust_analyzer',
 })
 
+-- Fix Undefined global 'vim'
+lsp.configure('sumneko_lua', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
+
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -28,17 +39,13 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
         error = 'E',
         warn = 'W',
         hint = 'H',
         info = 'I'
     }
-})
-
-vim.diagnostic.config({
-    virtual_text = true,
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -62,3 +69,7 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+vim.diagnostic.config({
+    virtual_text = true,
+})
