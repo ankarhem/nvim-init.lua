@@ -46,7 +46,7 @@ return require('packer').startup(function(use)
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
+      { 'Gafamadriz/friendly-snippets' },
     }
   }
 
@@ -72,9 +72,5 @@ return require('packer').startup(function(use)
   })
 
 
-  use({
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-  })
-
+  use('ggandor/lightspeed.nvim')
 end)
