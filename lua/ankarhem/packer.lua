@@ -55,14 +55,19 @@ return require('packer').startup(function(use)
 
   -- Rust
   use('simrat39/rust-tools.nvim')
-  use 'nvim-lua/plenary.nvim' -- Debugging
-  use 'mfussenegger/nvim-dap' -- Debugging
+  use('nvim-lua/plenary.nvim') -- Debugging
+  use('mfussenegger/nvim-dap') -- Debugging
 
   -- Comment toggler
-  use {
+  use({
       'numToStr/Comment.nvim',
       config = function()
           require('Comment').setup()
       end
-  }
+  })
+
+  use({
+      'nmac427/guess-indent.nvim',
+      config = function() require('guess-indent').setup {} end,
+  })
 end)
