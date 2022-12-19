@@ -68,7 +68,14 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
+local rust_lsp = lsp.build_options('rust_analyzer', {})
+
 lsp.setup()
+
+-- Initialize rust_analyzer with rust-tools
+require('rust-tools').setup({
+    server = rust_lsp
+})
 
 vim.diagnostic.config({
     virtual_text = true,

@@ -53,4 +53,16 @@ return require('packer').startup(function(use)
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
 
+  -- Rust
+  use('simrat39/rust-tools.nvim')
+  use 'nvim-lua/plenary.nvim' -- Debugging
+  use 'mfussenegger/nvim-dap' -- Debugging
+
+  -- Comment toggler
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
 end)
