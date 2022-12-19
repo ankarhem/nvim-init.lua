@@ -68,14 +68,25 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
-local rust_lsp = lsp.build_options('rust_analyzer', {})
+local rt = require('rust-tools');
+local rust_lsp = lsp.build_options('rust_analyzer', {
+  on_attach = function(client, bufnr)
+    local opts = {buffer = bufnr, remap = false}
+    -- Toggle rust-tools inline hints
+    vim.keymap.set("n", "<leader>vhe", rt.inlay_hints.enable, opts)
+    vim.keymap.set("n", "<leader>vhd", rt.inlay_hints.disable, opts)
+  end
+})
 
 lsp.setup()
 
 -- Initialize rust_analyzer with rust-tools
-require('rust-tools').setup({
+rt.setup({
     server = rust_lsp
 })
+
+-- Enable inlay hints auto update and set them for all the buffers
+require('rust-tools').inlay_hints.enable()
 
 vim.diagnostic.config({
     virtual_text = true,
