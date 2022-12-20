@@ -28,7 +28,7 @@ return require('packer').startup(function(use)
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
 
-  use {
+  use({
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
@@ -46,9 +46,9 @@ return require('packer').startup(function(use)
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
-      { 'Gafamadriz/friendly-snippets' },
+      { 'rafamadriz/friendly-snippets' },
     }
-  }
+  })
 
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
@@ -72,5 +72,15 @@ return require('packer').startup(function(use)
   })
 
 
+  -- Navigation
   use('ggandor/lightspeed.nvim')
+
+  -- LSP progress
+  use({
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup()
+    end
+  })
+
 end)
