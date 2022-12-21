@@ -83,4 +83,7 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- Minimap (requires code-minimap `cargo install --locked code-minimap`)
+  use('wfxr/minimap.vim')
+
 end)
